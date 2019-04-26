@@ -1,10 +1,10 @@
 ### 介绍
 
-本代码可以直接在 Linux 系统或 Mac OS 直接运行(不支持 Windows)主要作用为下载 “Bilibili” 网站视频。
+可在Linux,MAC,Windows系统下运行
 
 ### 运行环境
 
-1. Linux/Mac 系统环境
+1. Linux/Mac/Windows 系统环境
 2. Python3
 
 ### 依赖包
@@ -24,6 +24,7 @@ pyton3 get_video.py
 2019-03-05
 
 1. 番剧暂时无法下载,正在研究。
+2. 兼容所有操作系统
 
 ### 郑重声明
 
