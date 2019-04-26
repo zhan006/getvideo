@@ -3,6 +3,7 @@ import os
 import sys
 from decimal import Decimal
 import binascii
+import time
 
 class MergeVideo(object):
     """

@@ -33,7 +33,7 @@ appkey = 'iVGUTjsxvpLeuDCf'
 secretkey = 'aHRmhWMLkdeMuILqORnYZocwMBpMEOdt'
 
 
-def get_cid(html: str) -> str:
+def get_cid(url,html: str) -> str:
     """获取 cid 参数
     1. 定位 cid 参数位置。
     2. 判断此视频是否有多个分 P。
@@ -83,12 +83,14 @@ def dl_video(video_urls: list, title: str)-> None:
     2. 下载 video_urls 中的视频链接。
     3. 下载完成后判断当前视频是否被分割成多段，如果被分割则使用合并工具。
     """
-    cur_path = (os.popen('pwd').read()).strip('\n')
+    #cur_path = (os.popen('echo%cd%').read()).strip('\n')
+    cur_path=os.getcwd()
     file_path = cur_path + '/Bilivideo/'
-    find_dir = os.popen("ls").read()
-    if "Bilivideo" not in find_dir:
+    #find_dir = os.popen("dir").read()
+    if not os.path.exists(file_path):
         print(F"未找到存放文件夹，已自动创建，路径为 {file_path}")
-        os.system("mkdir Bilivideo")
+        #os.system("mkdir Bilivideo")
+        os.mkdir(file_path)
     print(F"{title},开始下载...")
     num = 0
     merge_list = list()
@@ -133,8 +135,10 @@ def main():
         sys.exit()
     headers['Referer'] = url
     html = requests.get(url, headers=headers, cookies=cookies, verify=True).text
-    cid, title = get_cid(html)
+    cid, title = get_cid(url,html)
+    print("cid: "+str(cid)+"\ntitle: "+str(title))
     video_urls = get_dl_urls(cid)
+    print("url: "+str(video_urls))
     dl_video(video_urls, title)
 
 if __name__ == '__main__':
